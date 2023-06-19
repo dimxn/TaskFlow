@@ -1,6 +1,7 @@
 import "../User/User.css";
+import Avatar from "../../../../assets/avatar.png";
 
-export const User = ({avatar, name}) => {
+export const User = ({avatar = Avatar, name}) => {
     return (
         <section className="sidebar-top">
             <div className="user">
