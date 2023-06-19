@@ -5,6 +5,7 @@ import {Task} from "./Task/Task";
 import {TASKS_URL} from "../../../utils/constants";
 import {EditForm} from "./EditForm/EditForm";
 import ShowTask from "./ShowTask/ShowTask";
+import {Loading} from "./Loading/Loading";
 
 export const Tasks = ({titlePage, showCompleted, userId}) => {
     const [listTasks, setListTasks] = useState([]);
@@ -87,9 +88,9 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
     }, [listTasks, searchQuery]);
 
 
-    if (isLoading) return <h1>Отримуємо дані...</h1>;
-    if (!Array.isArray(listTasks)) return <h1>Щось пішло не так</h1>;
-    if (error) return <h1>{error.message}</h1>;
+    if (isLoading) return <Loading/>;
+    if (!Array.isArray(listTasks)) return <Loading isError={true} errorText={"Щось пішло не так"}/>;
+    if (error) return <Loading isError={true} errorText={error.message}/>;
 
     return (
         <section className="tasksWrapper">
