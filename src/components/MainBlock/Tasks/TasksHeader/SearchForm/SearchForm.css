@@ -1,0 +1,13 @@
+.search {
+    background-color: #fff;
+    padding: 2px;
+    box-shadow: 0px 0px 20px rgb(1 41 112 / 10%);
+}
+
+.search__input {
+    font-size: 1rem;
+}
+
+.search i {
+    margin-left: -10px;
+}
