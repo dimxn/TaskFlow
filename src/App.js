@@ -17,7 +17,7 @@ function App() {
             <Routes>
                 <Route
                     exact
-                    path="./tasks"
+                    path="./react-todo-list/tasks"
                     element={
                         isLoggedIn ? (
                             <MainBlock
@@ -27,11 +27,11 @@ function App() {
                                 setUserId={userId}
                             />
                         ) : (
-                            <Navigate to="./login" replace/>
+                            <Navigate to="./react-todo-list/login" replace/>
                         )
                     }
                 />
-                <Route exact path="./" element={<Navigate to="./tasks"/>}/>
+                <Route exact path="./react-todo-list/" element={<Navigate to="./react-todo-list/tasks"/>}/>
                 <Route
                     exact
                     path="./completed-tasks"
@@ -44,16 +44,16 @@ function App() {
                                 setUserId={userId}
                             />
                         ) : (
-                            <Navigate to="./login" replace/>
+                            <Navigate to="./react-todo-list/login" replace/>
                         )
                     }
                 />
                 <Route
                     exact
-                    path="./login"
+                    path="./react-todo-list/login"
                     element={
                         isLoggedIn ? (
-                            <Navigate to="./tasks" replace/>
+                            <Navigate to="./react-todo-list/tasks" replace/>
                         ) : (
                             <LoginPage
                                 setLoggedIn={setLoggedIn}
