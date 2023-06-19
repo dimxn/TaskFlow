@@ -62,7 +62,7 @@ export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) =
                                         {...input}
                                         type="text"
                                         placeholder="Логін"
-                                        className={meta.error && meta.touched ? "error" : ""}
+                                        className={meta.error && meta.touched ? "login-error" : ""}
                                     />
                                     {meta.error && meta.touched && (
                                         <div className="errorText">{meta.error}</div>
@@ -79,7 +79,7 @@ export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) =
                                         {...input}
                                         type="password"
                                         placeholder="Пароль"
-                                        className={meta.error && meta.touched ? "error" : ""}
+                                        className={meta.error && meta.touched ? "login-error" : ""}
                                     />
                                     {meta.error && meta.touched && (
                                         <div className="errorText">{meta.error}</div>
