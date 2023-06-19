@@ -1,5 +1,6 @@
 import "../LoginPage/LoginPage.css";
 import {Field, Form} from "react-final-form";
+import Avatar from "../../assets/avatar.png";
 
 
 export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) => {
@@ -19,7 +20,7 @@ export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) =
                 if (data && data.length > 0) {
                     const user = data[0];
                     setUserName(localStorage.setItem("nickName", user.name));
-                    setUserPhoto(localStorage.setItem("image", user.avatar));
+                    setUserPhoto(localStorage.setItem("image", user.avatar == undefined ? Avatar : user.avatar));
                     setUserId(localStorage.setItem("userId", user.id));
                     localStorage.setItem("isLoggedIn", true);
                     setLoggedIn(true);
