@@ -3,6 +3,7 @@
     background-color: transparent;
     cursor: pointer;
     font-size: 1.2rem;
+    animation: fadeIn .4s forwards;
 }
 
 .check:hover {
@@ -17,6 +18,8 @@
     cursor: not-allowed;
     font-size: 1.2rem;
     transition: .3s ease;
+    animation: fadeIn .4s forwards;
+
 }
 
 .checked i {

@@ -6,6 +6,7 @@
     z-index: 100;
     background-color: var(--white);
     width: 600px;
+
     text-align: center;
     border-radius: 10px;
     transition: all .3s ease;

@@ -1,15 +1,17 @@
 .add-form {
     position: fixed;
-    left: 50%;
-    top: 50%;
+    left: calc(50% - 300px);
+    top: calc(50% - 300px);
     transform: translate(-50%, -50%);
     z-index: 100;
     background-color: var(--white);
     width: 600px;
+    height: auto;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     transition: all .3s ease;
+    animation: bounceIn 0.8s ease-out forwards;
 }
 
 @keyframes fadeIn {
