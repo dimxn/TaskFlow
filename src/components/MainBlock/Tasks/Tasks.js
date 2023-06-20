@@ -106,27 +106,35 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
             />
             <section className="tasksList">
                 {filteredTasks.length > 0 ? (
-                    filteredTasks.map((task, pos) => {
-                        if (showCompleted && !task.done) return <Empty title="У Вас всі завдання виконанні!"
-                                                                       text="Або ж Ви не виконували завдання"
-                                                                       image={TASKS_DONE}/>;
-                        return (
-                            <Task
-                                title={task.title}
-                                description={task.description}
-                                image={task.image}
-                                done={task.done}
-                                check={() => checkTask(pos)}
-                                deleteTask={() => deleteTask(task.id)}
-                                key={task.id}
-                                selectTask={() => selectTask(pos)}
-                                showTask={() => showedTask(pos)}
-                                delay={pos + 1}
+                    <>
+                        {showCompleted && filteredTasks.every(task => !task.done) ? (
+                            <Empty
+                                title="У Вас всі завдання виконанні!"
+                                text="Або ж Ви не виконували завдання"
+                                image={TASKS_DONE}
                             />
-                        );
-                    })) : (
-                    <Empty title="У Вас немає завдань"
-                           text="Щоб створити завдання, натисніть на кнопку - Створити завдання"/>
+                        ) : (
+                            filteredTasks.map((task, pos) => showCompleted && !task.done ? null : (
+                                <Task
+                                    title={task.title}
+                                    description={task.description}
+                                    image={task.image}
+                                    done={task.done}
+                                    check={() => checkTask(pos)}
+                                    deleteTask={() => deleteTask(task.id)}
+                                    key={task.id}
+                                    selectTask={() => selectTask(pos)}
+                                    showTask={() => showedTask(pos)}
+                                    delay={pos + 1}
+                                />
+                            ))
+                        )}
+                    </>
+                ) : (
+                    <Empty
+                        title="У Вас немає завдань"
+                        text="Щоб створити завдання, натисніть на кнопку - Створити завдання"
+                    />
                 )}
             </section>
             {showEditForm && (
