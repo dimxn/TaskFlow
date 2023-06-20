@@ -134,7 +134,6 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
                 <ShowTask
                     setShowTask={setShowTask}
                     selectedTask={selectedTask}
-
                 />
             )}
         </section>
