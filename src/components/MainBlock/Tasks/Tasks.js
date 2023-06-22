@@ -109,8 +109,7 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
                     <>
                         {showCompleted && filteredTasks.every(task => !task.done) ? (
                             <Empty
-                                title="У Вас всі завдання виконанні!"
-                                text="Або ж Ви не виконували завдання"
+                                title="У Вас немає жодного виконаного завдання!"
                                 image={TASKS_DONE}
                             />
                         ) : (
