@@ -62,3 +62,7 @@
 .details:hover {
     color: var(--blue);
 }
+
+#root > div > main > section > div.show__task > div.task__wrapper > p {
+    overflow: scroll;
+}

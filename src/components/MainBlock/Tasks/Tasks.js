@@ -110,7 +110,6 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
                         {showCompleted && filteredTasks.every(task => !task.done) ? (
                             <Empty
                                 title="У Вас немає жодного виконаного завдання!"
-                                image={TASKS_DONE}
                             />
                         ) : (
                             filteredTasks.map((task, pos) => showCompleted && !task.done ? null : (
