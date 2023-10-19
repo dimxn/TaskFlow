@@ -31,11 +31,15 @@
     padding: 20px;
 }
 
+.task__title {
+    padding-bottom: 20px;
+}
+
 .show__task .task__wrapper p {
-    padding: 20px 0;
     text-align: left;
     height: 200px;
     overflow: scroll;
+    word-break: break-all;
 }
 
 .show__task .task__wrapper .hide-btn {
