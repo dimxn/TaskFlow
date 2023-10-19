@@ -44,6 +44,7 @@
 
 .task p {
     text-align: left;
+    word-break: break-all;
 }
 
 .task a {
