@@ -34,6 +34,8 @@
 .show__task .task__wrapper p {
     padding: 20px 0;
     text-align: left;
+    height: 200px;
+    overflow: scroll;
 }
 
 .show__task .task__wrapper .hide-btn {
@@ -63,6 +65,3 @@
     color: var(--blue);
 }
 
-#root > div > main > section > div.show__task > div.task__wrapper > p {
-    overflow: scroll;
-}
