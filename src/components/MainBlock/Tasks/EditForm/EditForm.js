@@ -7,6 +7,12 @@ export const EditForm = ({setShowEditForm, selectedTask, setListTasks, listTasks
     const [taskDescription, setTaskDescription] = useState(selectedTask?.description);
     const [taskImage, setTaskImage] = useState(selectedTask?.image);
 
+    const [isClose, setIsClose] = useState(false);
+    const closeTask = () => {
+        setIsClose(true);
+        setTimeout(() => setShowEditForm(false), 800);
+    }
+
     const handleTaskImageChange = (e) => {
         setTaskImage(e.target.value)
     }
@@ -42,14 +48,15 @@ export const EditForm = ({setShowEditForm, selectedTask, setListTasks, listTasks
                     return task;
                 })
                 setListTasks(updatedTasks);
-                setShowEditForm(false);
+                closeTask();
             })
             .catch(err => console.log(err))
     }
     return (
-        <>
-            <form onSubmit={editTask} className="add-form">
-                <button className="hide-btn" onClick={() => setShowEditForm(false)}>
+
+        <div className="popup">
+            <form onSubmit={editTask} style={{animation: `${isClose ? "bounceOut" : "bounceIn"} 0.8s ease-in-out forwards`}} className="add-form">
+                <button className="hide-btn" onClick={() => closeTask()}>
                     <i className="fa-solid fa-circle-xmark"></i>
                 </button>
                 <h2>Редагування завдання</h2>
@@ -69,7 +76,7 @@ export const EditForm = ({setShowEditForm, selectedTask, setListTasks, listTasks
                     <button type="submit" className="check">Зберегти та закрити</button>
                 </div>
             </form>
-            <div onClick={() => setShowEditForm(false)} className="overlay"></div>
-        </>
+            <div onClick={() => closeTask()} className="overlay"></div>
+        </div>
     )
 }

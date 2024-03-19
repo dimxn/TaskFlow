@@ -1,16 +1,13 @@
+
+
 .show__task {
-    position: fixed;
-    left: 30%;
-    top: 15%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
     background-color: var(--white);
     width: 600px;
-
     text-align: center;
     border-radius: 10px;
-    transition: all .3s ease;
-    animation: bounceIn 0.8s ease-out forwards;
+    transition: all .8s ease;
+    /* animation: bounceIn 0.8s ease-out forwards; */
+    z-index: 2;
 }
 
 @keyframes bounceIn {
@@ -27,12 +24,28 @@
     }
 }
 
+@keyframes bounceOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
 .show__task .task__wrapper {
     padding: 20px;
 }
 
 .task__title {
+    text-align: left;
     padding-bottom: 20px;
+    word-break: break-all;
 }
 
 .show__task .task__wrapper p {

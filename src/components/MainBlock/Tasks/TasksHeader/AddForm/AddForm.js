@@ -7,6 +7,12 @@ export const AddForm = ({setShowAddForm, setListTasks, listTasks, setUserId}) =>
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
     const [taskImage, setTaskImage] = useState('');
+    const [isClose, setIsClose] = useState(false);
+
+    const closeTask = () => {
+        setIsClose(true);
+        setTimeout(() => setShowAddForm(false), 800);
+    }
 
     const handleTaskImageChange = (e) => {
         setTaskImage(e.target.value)
@@ -41,15 +47,15 @@ export const AddForm = ({setShowAddForm, setListTasks, listTasks, setUserId}) =>
             .then(resp => resp.json())
             .then(newTaskFromServer => {
                 setListTasks([...listTasks, newTaskFromServer]);
-                setShowAddForm(false);
+                closeTask();
             })
             .catch(err => console.log(err));
 
 
     }
     return (
-        <>
-            <form onSubmit={createTask} className="add-form">
+        <div className="popup">
+            <form onSubmit={createTask}  style={{animation: `${isClose ? "bounceOut" : "bounceIn"} 0.8s ease-in-out forwards`}}  className="add-form">
                 <button className="hide-btn" onClick={() => setShowAddForm(false)}>
                     <i className="fa-solid fa-circle-xmark"></i>
                 </button>
@@ -70,7 +76,7 @@ export const AddForm = ({setShowAddForm, setListTasks, listTasks, setUserId}) =>
                     <button type="submit" className="check">Додати завдання</button>
                 </div>
             </form>
-            <div onClick={() => setShowAddForm(false)} className="overlay"></div>
-        </>
+            <div onClick={() => closeTask()} className="overlay"></div>
+        </div>
     )
 }

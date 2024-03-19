@@ -10,10 +10,8 @@
 }
 
 .tasksList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    column-count: 3;
+    column-gap: 20px;
 }
 
 .tasks__add {

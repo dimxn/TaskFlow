@@ -8,19 +8,23 @@ function ShowTask({setShowTask, selectedTask, check}) {
     const [taskDescription] = useState(selectedTask?.description);
     const [taskImage] = useState(selectedTask?.image);
     const customFilling = selectedTask.done ? (<CheckedButton click={check}/>) : (<CheckButton click={check}/>);
-
+    const [isClose, setIsClose] = useState(false);
+    const closeTask = () => {
+        setIsClose(true);
+        setTimeout(() => setShowTask(false), 800);
+    }
     return (
-        <>
-            <div className="show__task">
+        <div className="popup">
+            <div style={{animation: `${isClose ? "bounceOut" : "bounceIn"} 0.8s ease-in-out forwards`}} className="show__task">
                 <div className="task__image">
-                    <img src={taskImage} alt="image"/>
+                    <img src={taskImage} alt={taskImage}/>
                 </div>
                 <div className="task__wrapper">
                     <div className="actions">
                         <h2 className="task__title">
                             {taskTitle}
                         </h2>
-                        <button className="hide-btn" onClick={() => setShowTask(false)}>
+                        <button className="hide-btn" onClick={() => closeTask()}>
                             <i className="fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
@@ -28,9 +32,9 @@ function ShowTask({setShowTask, selectedTask, check}) {
                     {customFilling}
                 </div>
             </div>
-            <div onClick={() => setShowTask(false)} className="overlay"></div>
+            <div onClick={() => closeTask()} className="overlay"></div>
 
-        </>
+        </div>
     );
 }
 

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useCallback} from "react";
 import {TasksHeader} from "./TasksHeader/TasksHeader";
 import "../Tasks/Tasks.css";
 import {Task} from "./Task/Task";
@@ -7,7 +7,6 @@ import {EditForm} from "./EditForm/EditForm";
 import ShowTask from "./ShowTask/ShowTask";
 import {Loading} from "./Loading/Loading";
 import {Empty} from "./Empty/Empty";
-import TASKS_DONE from "../../../assets/tasks-done.png";
 
 export const Tasks = ({titlePage, showCompleted, userId}) => {
     const [listTasks, setListTasks] = useState([]);
@@ -16,27 +15,33 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
     const [filteredTasks, setFilteredTasks] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
 
-    const getTasks = () => {
+    const getTasks = useCallback(() => {
+        setIsLoading(true);
         fetch(TASKS_URL(userId))
             .then((resp) => {
                 if (resp.ok) return resp.json();
-                setError(resp.statusText);
+                throw new Error(resp.statusText); // Викликаємо помилку для відловлювання в catch
             })
             .then((tasksFromServer) => {
-                setListTasks(tasksFromServer);
-                setIsLoading(false);
+                if (Array.isArray(tasksFromServer)) {
+                    setListTasks(tasksFromServer);
+                    setError(null);
+                } else {
+                    throw new Error("Отримані дані не є масивом");
+                }
             })
             .catch((error) => {
-                console.log(error);
-                setIsLoading(false);
                 setError(error);
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
-    };
+    }, [userId]);
 
-    useEffect(() => {
-        setIsLoading(true);
+     useEffect(() => {
         getTasks();
-    }, []);
+    }, [getTasks]);
 
     const checkTask = (pos) => {
         const updatedTasks = [...listTasks];
@@ -92,8 +97,7 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
 
     if (isLoading) return <Loading/>;
     if (!Array.isArray(listTasks)) return <Loading isError={true} errorText={"Щось пішло не так"}/>;
-    if (error) return <Loading isError={true} errorText={error.message}/>;
-
+    // if (error) return <Loading isError={true} errorText={error.message}/>;
     return (
         <section className="tasksWrapper">
             <TasksHeader
@@ -105,7 +109,7 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
                 setUserId={userId}
             />
             <section className="tasksList">
-                {filteredTasks.length > 0 ? (
+                {filteredTasks.length > 0 || !error ? (
                     <>
                         {showCompleted && filteredTasks.every(task => !task.done) ? (
                             <Empty
@@ -148,8 +152,10 @@ export const Tasks = ({titlePage, showCompleted, userId}) => {
                 <ShowTask
                     setShowTask={setShowTask}
                     selectedTask={selectedTask}
+                    check={filteredTasks.done}
                 />
             )}
         </section>
     );
+
 };

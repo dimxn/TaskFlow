@@ -1,6 +1,7 @@
 .task {
-    margin: 20px 5px;
-    width: 32%;
+    margin: 0 0 20px;
+    width: 100%;
+    break-inside: avoid;
     display: flex;
     flex-direction: column;
     background-color: var(--white);
@@ -8,17 +9,6 @@
     box-shadow: 0px 0px 20px rgb(1 41 112 / 10%);
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .task__wrapper {
@@ -59,8 +49,22 @@
     align-items: center;
 }
 
+.actions__wrapper {
+    position: absolute;
+    top: 140px;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.636), transparent);
+    width: 100%;
+    transition: .3s ease;
+    opacity: 0;
+}
+
+.task__image:hover .actions__wrapper {
+    opacity: 1;
+}
+
 .delete {
-    color: var(--gray);
+    color: var(--white);
     background-color: transparent;
     cursor: pointer;
 }
@@ -70,7 +74,7 @@
 }
 
 .edit {
-    color: var(--gray);
+    color: var(--white);
     background-color: transparent;
     cursor: pointer;
 }

@@ -6,7 +6,6 @@ import Avatar from "../../assets/avatar.png";
 export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) => {
 
     const handleLogin = (values) => {
-        // Ваша логіка для обробки авторизації з використанням API
         const url = `https://647ee5e9c246f166da8f9876.mockapi.io/spa/users?login=${values.login}&password=${values.password}`;
 
         fetch(url)
@@ -20,7 +19,7 @@ export const LoginPage = ({setLoggedIn, setUserPhoto, setUserName, setUserId}) =
                 if (data && data.length > 0) {
                     const user = data[0];
                     setUserName(localStorage.setItem("nickName", user.name));
-                    setUserPhoto(localStorage.setItem("image", user.avatar == undefined ? Avatar : user.avatar));
+                    setUserPhoto(localStorage.setItem("image", user.avatar !== undefined ? user.avatar : Avatar));
                     setUserId(localStorage.setItem("userId", user.id));
                     localStorage.setItem("isLoggedIn", true);
                     setLoggedIn(true);

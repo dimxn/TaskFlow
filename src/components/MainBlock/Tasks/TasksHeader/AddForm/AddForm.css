@@ -1,12 +1,19 @@
-.add-form {
+.popup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    left: calc(50% - 300px);
-    top: calc(50% - 300px);
-    transform: translate(-50%, -50%);
-    z-index: 100;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.add-form {
+    z-index: 2;
     background-color: var(--white);
     width: 600px;
-    height: auto;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
