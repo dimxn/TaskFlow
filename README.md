@@ -1,5 +1,11 @@
 # TaskFlow
 
+## Colaborators
+ - [Adam Ivanyush](https://github.com/Zewodec) (Backend)
+ - [Dmytro Ryzhytskyi](https://github.com/dimxn) (Frontend)
+ - [Sviatoslav Hnativ](https://github.com/HnativSviatoslav) (Tester)
+ - [Volodymyr Hinzula](https://github.com/Fantomchik1) (Project Manager)
+
 ## Available Scripts
 
 In the project directory, you can run:
