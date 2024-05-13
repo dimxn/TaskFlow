@@ -1,73 +1,71 @@
-import './App.css';
-import {LoginPage} from "./pages/LoginPage/LoginPage";
-import {MainBlock} from "./components/MainBlock/MainBlock";
-import {Navigate, Route, Routes} from 'react-router-dom';
-import React, {useState} from "react";
-import {CompletedTasks} from "./pages/CompletedTasks/CompletedTasks";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
+import { SideBar } from "./components/SideBar";
+import { Main } from "./components/Main";
+import { User } from "./components/User";
+import { AddNewTODO } from "./components/AddNewTODO";
+import { Calendar } from "./components/Calendar";
+import { Projects } from "./components/Projects";
+import { Todos } from "./components/Todos";
+import { EditTodo } from "./components/EditTodo";
+import Login from "./components/Login";
+import { auth } from "./firebase";
+import { Loader } from "./components/Loader";
 
 function App() {
-    const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
-    const [userName, setUserName] = useState(localStorage.getItem("nickName"));
-    const [userPhoto, setUserPhoto] = useState(localStorage.getItem("image"));
-    const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    return (
-        <div className="App">
-            <Routes>
-                <Route
-                    exact
-                    path="/tasks"
-                    element={
-                        isLoggedIn ? (
-                            <MainBlock
-                                setLoggedIn={setLoggedIn}
-                                setUserName={userName}
-                                setUserPhoto={userPhoto}
-                                setUserId={userId}
-                            />
-                        ) : (
-                            <Navigate to="/login" replace/>
-                        )
-                    }
-                />
-                <Route exact path="/" element={<Navigate to="/tasks"/>}/>
-                <Route
-                    exact
-                    path="/completed-tasks"
-                    element={
-                        isLoggedIn ? (
-                            <CompletedTasks
-                                setLoggedIn={setLoggedIn}
-                                setUserName={userName}
-                                setUserPhoto={userPhoto}
-                                setUserId={userId}
-                            />
-                        ) : (
-                            <Navigate to="/login" replace/>
-                        )
-                    }
-                />
-                <Route
-                    exact
-                    path="/login"
-                    element={
-                        isLoggedIn ? (
-                            <Navigate to="/tasks" replace/>
-                        ) : (
-                            <LoginPage
-                                setLoggedIn={setLoggedIn}
-                                setUserName={setUserName}
-                                setUserPhoto={setUserPhoto}
-                                setUserId={setUserId}
-                            />
-                        )
-                    }
-                />
-                <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
-        </div>
-    );
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              user ? (
+                <>
+                  <SideBar>
+                    <User
+                      user={auth.currentUser.displayName}
+                      photo={auth.currentUser.photoURL}
+                    />
+                    <AddNewTODO />
+                    <Calendar />
+                    <Projects />
+                  </SideBar>
+                  <Main>
+                    <Todos />
+                    <EditTodo />
+                  </Main>
+                </>
+              ) : (
+                <Navigate replace to="/login" />
+              )
+            }
+          ></Route>
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

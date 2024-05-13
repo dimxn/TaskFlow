@@ -1,91 +1,561 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comfortaa", sans-serif;
 }
 
-:root {
-    --blue: #0c85ef;
-    --white: #fff;
-    --gray: #333;
-}
-
-input, button {
-    font-family: "Montserrat", sans-serif;
-    padding: 5px;
-    margin: 10px 0;
-    outline: none;
-    border: none;
-    transition: .3s ease;
-    font-size: 1.5rem;
-}
-
-input:focus {
-    border-bottom: 3px solid var(--blue);
-}
-
-.submit {
-    padding: 5px 20px;
-    cursor: pointer;
-}
-
-.submit:hover {
-    background-color: var(--blue);
-    color: var(--white);
+hr {
+  border-color: #33333312;
 }
 
 .App {
-    text-align: center;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f6f9ff;
 }
 
-
-@keyframes bounceIn {
-    from {
-        opacity: 0;
-        transform: scale(0.3);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-    to {
-        transform: scale(1);
-    }
+.main {
+  position: relative;
 }
 
-@keyframes bounceOut {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    to {
-        transform: scale(0.3);
-        opacity: 0;
-    }
+.sidebar {
+  width: 300px;
+  min-width: 210px;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.info p {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.info a {
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-new-todo {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.add-new-todo .btn {
+  padding: 1rem;
+  width: 100%;
+  height: 70px;
+}
+
+.add-new-todo .btn button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: #8875ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.add-new-todo .btn button:hover {
+  background-color: #9989fc;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+
+.modal .container {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+}
+
+.todo-form {
+  padding: 1rem;
+  background: #fff;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.todo-form .text input {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+.todo-form .text input:focus {
+  outline: none;
+  border-bottom: 2px solid #8875ff;
+}
+
+.todo-form .remind {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.todo-form p {
+  margin-left: 10px;
+}
+
+.todo-form .title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.todo-form .pick-day {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+.todo-form .pick-time {
+  padding: 1.5rem;
+}
+.todo-form .pick-project {
+  padding: 0.5rem;
+}
+.todo-form .projects {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 1rem 0 1rem;
+}
+.todo-form .projects .project {
+  border: 1px solid #8875ff;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.todo-form .projects .active {
+  background-color: #8875ff;
+  color: #fff;
+}
+
+.todo-form .cancel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.todo-form .confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.todo-form .confirm button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: #8875ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.calendar {
+  padding: 1rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.calendar .header {
+  display: flex;
+  align-items: center;
+}
+
+.calendar .header .title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.calendar .header .title p {
+  margin-left: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.calendar .header .btns span {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.calendar .items {
+  padding: 0.5rem;
+}
+
+.calendar .items .item {
+  padding: 0.25rem;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.categorys {
+  padding: 1rem;
+  border-bottom: 1px solid #ebebeb;
+}
+.categorys .header {
+  display: flex;
+  align-items: center;
+}
+.categorys .header .title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.categorys .header .title p {
+  margin-left: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.categorys .header .btns {
+  display: flex;
+  align-items: center;
+}
+
+.categorys .header .btns span.edit {
+  margin-right: 5px;
+}
+
+.categorys .header .btns span {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.categorys .header .btns span:hover {
+  background-color: #ebebeb;
+}
+
+.categorys .item {
+  padding: 0.5rem;
+}
+
+.project {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0.25rem;
+  margin: 5px;
+  font-size: 1rem;
+}
+
+.project .name {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.project .btns {
+  display: flex;
+  align-items: center;
+}
+
+.project .btns .total-todos {
+  position: absolute;
+  right: 0;
+  background-color: #ebebeb;
+  width: 25px;
+  height: 25px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.project .btns .edit-delete {
+  position: absolute;
+  right: 0;
+  display: flex;
+}
+
+.project .btns .edit-delete span {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.project .btns .edit-delete span.edit:hover {
+  background-color: #acffac;
+}
+.project .btns .edit-delete span.delete:hover {
+  background-color: #ffacac;
+}
+
+.add-new-project .add-button span {
+  margin-right: 5px;
+}
+
+.project-form {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 15px;
+  position: relative;
+}
+
+.project-form input {
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+.project-form input:focus {
+  outline: none;
+  border-bottom: 2px solid #8875ff;
+}
+
+.project-form .cancel {
+  border: none;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: #8875ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.project-form .cancel:hover {
+  background-color: #ffacac;
+  color: #000;
+}
+
+.project-form .confirm {
+  border: none;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 1rem;
+  background-color: #8875ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.project-form .confirm:hover {
+  background-color: #acffac;
+  color: #000;
+}
+
+.todo-s {
+  width: 450px;
+  height: 80%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  border-radius: 15px;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+
+.todo-s .selected-projects {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  text-transform: capitalize;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  z-index: 10;
+}
+
+.todo {
+  padding: 0.5rem 1rem;
+}
+
+.todo .todo-container {
+  display: flex;
+  align-items: center;
+}
+
+.todo .todo-container span {
+  cursor: pointer;
+}
+
+.todo .todo-container .text {
+  position: relative;
+  flex: 1;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.todo .todo-container .text span {
+  font-size: 0.8rem;
+  color: #bebebe;
+}
+
+.todo .todo-container .text .line {
+  position: absolute;
+  height: 1px;
+  background-color: #bebebe;
+  top: 25%;
+  width: 0;
+  transition: width 0.3s ease;
+}
+.todo .todo-container .text .line-through {
+  width: 100%;
+}
+
+.todo .todo-container .add-to-next-day {
+  margin-right: 10px;
+}
+
+.edit-todo {
+  position: absolute;
+  bottom: 40px;
+  left: calc(40px + 450px + 40px);
+  background-color: #fff;
+  height: 80%;
+  width: 450px;
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+.edit-todo .header {
+  margin: 1rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.next-seven-days .day {
+  margin: 5px;
+  display: flex;
+}
+
+.next-seven-days .day .name {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.next-seven-days .day .total-todos {
+  margin-left: 10px;
+}
+
+.no-tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.no-tasks .no-tasks__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.no-tasks .no-tasks__wrapper p {
+  text-align: center;
+  margin: 0 30px;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px);
+  }
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.login-container h1 {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 900;
+}
+
+.login-container .google-auth {
+  display: flex;
+  gap: 10px;
+  background-color: #8687e7;
+  border: 0;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.login-container .google-auth:hover {
+  filter: brightness(0.9);
 }
