@@ -18,7 +18,9 @@ hr {
 }
 
 .main {
-  position: relative;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar {
@@ -28,6 +30,9 @@ hr {
   margin: 10px;
   padding: 10px;
   border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .user {
@@ -87,15 +92,23 @@ hr {
   left: 0;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
 }
 
 .modal .container {
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -25%);
+  transform: translate(-50%, -50%);
+}
+
+.rename-project-modal {
+  position: absolute;
+  left: 280px;
 }
 
 .todo-form {
@@ -218,13 +231,27 @@ hr {
 }
 
 .calendar .items {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 .calendar .items .item {
-  padding: 0.25rem;
-  margin: 5px;
+  padding: 10px;
   cursor: pointer;
+  border-radius: 5px;
+  margin: 2px 0;
+  transition: 0.3s ease;
+}
+
+.calendar .items .item.active {
+  background-color: #8875ff;
+  color: #fff;
+}
+.calendar .items .item.active:hover {
+  background-color: #9989fc;
+}
+
+.calendar .items .item:hover {
+  background-color: #f5f5f5;
 }
 
 .categorys {
@@ -271,21 +298,35 @@ hr {
   background-color: #ebebeb;
 }
 
-.categorys .item {
-  padding: 0.5rem;
+.categorys .items {
+  padding: 0.5rem 1rem;
 }
 
 .project {
   display: flex;
   position: relative;
   align-items: center;
-  padding: 0.25rem;
-  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2px 0;
+  transition: 0.3s ease;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.project.active {
+  background-color: #8875ff;
+  color: #fff;
+}
+.project.active:hover {
+  background-color: #9989fc;
+}
+
+.project:hover {
+  background-color: #ebebeb;
 }
 
 .project .name {
-  cursor: pointer;
   word-break: break-all;
 }
 
@@ -340,6 +381,13 @@ hr {
   padding: 1rem;
   border-radius: 15px;
   position: relative;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.project-form h3 {
+  color: #000;
 }
 
 .project-form input {
@@ -397,9 +445,9 @@ hr {
   width: 450px;
   height: 80%;
   background-color: #fff;
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   border-radius: 15px;
   padding: 1rem;
   overflow-y: scroll;
@@ -461,12 +509,13 @@ hr {
 }
 
 .edit-todo {
-  position: absolute;
-  bottom: 40px;
-  left: calc(40px + 450px + 40px);
   background-color: #fff;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   height: 80%;
   width: 450px;
+  margin-left: 20px;
   border-radius: 15px;
   padding: 1rem;
 }

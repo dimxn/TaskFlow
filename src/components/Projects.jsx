@@ -6,7 +6,7 @@ import { Project } from "./Project";
 import { AddNewProject } from "./AddNewProject";
 import { TodoContext } from "../context";
 
-export const Projects = () => {
+export const Projects = ({ activeProject, setActiveProject, setActive }) => {
   const [showMenu] = useState(true);
   const [edit, setEdit] = useState(false);
   const pencilColor = edit ? "#1ec94c" : "#000";
@@ -39,7 +39,14 @@ export const Projects = () => {
         }}
       >
         {projects.map((project) => (
-          <Project project={project} key={project.id} edit={edit} />
+          <Project
+            project={project}
+            key={project.id}
+            edit={edit}
+            activeProject={activeProject}
+            setActiveProject={setActiveProject}
+            setActive={setActive}
+          />
         ))}
       </div>
     </div>

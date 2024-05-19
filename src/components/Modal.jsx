@@ -11,7 +11,7 @@ export const Modal = ({ children, showModal, setShowModal }) => {
 
   const modalAnimations = useSpring({
     opacity: showModal ? 1 : 0,
-    top: showModal ? "25%" : "0%",
+    top: showModal ? "50%" : "0%",
   });
   return (
     showModal && (

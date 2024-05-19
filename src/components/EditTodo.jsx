@@ -49,11 +49,10 @@ export const EditTodo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Update logic here
   };
 
   return (
-    <div className="">
+    <div className="edit-task">
       {selectedTodo && (
         <div className="edit-todo">
           <div className="header">Відредагувати завдання</div>

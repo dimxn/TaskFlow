@@ -1,12 +1,11 @@
 import { BiCaretUpCircle } from "react-icons/bi";
 import { AiOutlineCalendar } from "react-icons/ai";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { calendarItems } from "../constants";
 import { TodoContext } from "../context";
 
-export const Calendar = () => {
+export const Calendar = ({ active, setActive, setActiveProject }) => {
   const { setSelectedProject } = useContext(TodoContext);
-
   return (
     <div className="calendar">
       <div className="header">
@@ -23,9 +22,13 @@ export const Calendar = () => {
       <div className="items">
         {calendarItems.map((item) => (
           <div
-            className="item"
+            className={`item ${active === item ? "active" : ""}`}
             key={item}
-            onClick={() => setSelectedProject(item)}
+            onClick={() => {
+              setActive(item);
+              setSelectedProject(item);
+              setActiveProject("");
+            }}
           >
             {item}
           </div>

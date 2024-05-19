@@ -11,10 +11,15 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { auth, firestore } from "../firebase";
-import { Modal } from "./Modal";
 import { TodoContext } from "../context";
 
-export const Project = ({ project, edit }) => {
+export const Project = ({
+  project,
+  edit,
+  activeProject,
+  setActiveProject,
+  setActive,
+}) => {
   const { defaultProject, selectedProject, setSelectedProject } =
     useContext(TodoContext);
 
@@ -46,10 +51,15 @@ export const Project = ({ project, edit }) => {
   };
 
   return (
-    <div className="project">
-      <div className="name" onClick={() => setSelectedProject(project.name)}>
-        {project.name}
-      </div>
+    <div
+      className={`project ${activeProject === project.name ? "active" : ""}`}
+      onClick={() => {
+        setActiveProject(project.name);
+        setSelectedProject(project.name);
+        setActive("");
+      }}
+    >
+      <div className="name">{project.name}</div>
       <div className="btns">
         {edit ? (
           <div className="edit-delete">
@@ -66,9 +76,11 @@ export const Project = ({ project, edit }) => {
           <div className="total-todos">{project.numOfTodos}</div>
         )}
       </div>
-      <Modal setShowModal={setShowModal} showModal={showModal}>
-        <RenameProject project={project} setShowModal={setShowModal} />
-      </Modal>
+      {showModal && (
+        <div className="rename-project-modal">
+          <RenameProject project={project} setShowModal={setShowModal} />
+        </div>
+      )}
     </div>
   );
 };

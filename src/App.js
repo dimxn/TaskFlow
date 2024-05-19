@@ -21,6 +21,8 @@ import { Loader } from "./components/Loader";
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [active, setActive] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -49,8 +51,16 @@ function App() {
                       photo={auth.currentUser.photoURL}
                     />
                     <AddNewTODO />
-                    <Calendar />
-                    <Projects />
+                    <Calendar
+                      active={active}
+                      setActive={setActive}
+                      setActiveProject={setActiveProject}
+                    />
+                    <Projects
+                      activeProject={activeProject}
+                      setActiveProject={setActiveProject}
+                      setActive={setActive}
+                    />
                   </SideBar>
                   <Main>
                     <Todos />
