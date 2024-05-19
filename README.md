@@ -1,6 +1,6 @@
 # TaskFlow
 
-## Colaborators
+## Developers
  - [Adam Ivanyush](https://github.com/Zewodec) (Backend)
  - [Dmytro Ryzhytskyi](https://github.com/dimxn) (Frontend)
  - [Sviatoslav Hnativ](https://github.com/HnativSviatoslav) (Tester)
