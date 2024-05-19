@@ -54,8 +54,8 @@ hr {
   font-weight: bold;
 }
 
-.info a {
-  text-decoration: none;
+.info div {
+  margin-top: 5px;
   display: flex;
   justify-content: flex-end;
 }
@@ -337,7 +337,7 @@ hr {
 
 .project .btns .total-todos {
   position: absolute;
-  right: 0;
+  right: 5px;
   background-color: #ebebeb;
   width: 25px;
   height: 25px;
@@ -346,6 +346,7 @@ hr {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  color: #000;
 }
 
 .project .btns .edit-delete {
@@ -607,4 +608,15 @@ hr {
 
 .login-container .google-auth:hover {
   filter: brightness(0.9);
+}
+
+.logout svg {
+  border-radius: 5px;
+  padding: 3px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.logout svg:hover {
+  background-color: #ebebeb;
 }

@@ -1,3 +1,4 @@
+import { IoMdExit } from "react-icons/io";
 import React from "react";
 import logo from "../assets/images/avatar.png";
 import { auth } from "../firebase";
@@ -29,9 +30,9 @@ export const User = ({ user, photo }) => {
       )}
       <div className="info">
         <p>{user}</p>
-        <a href="/" onClick={handleLogOut}>
-          Вийти!
-        </a>
+        <div className="logout" onClick={handleLogOut}>
+          <IoMdExit size={35} />
+        </div>
       </div>
     </div>
   );

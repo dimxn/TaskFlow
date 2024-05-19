@@ -63,7 +63,7 @@ export const EditTodo = () => {
               setText={setText}
               newDay={newDay}
               setNewDay={setNewDay}
-              newTime={newTime}
+              newtime={newTime}
               setNewTime={setNewTime}
               todoProject={todoProject}
               setTodoProjects={setTodoProject}

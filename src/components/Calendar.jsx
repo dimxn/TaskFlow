@@ -1,6 +1,6 @@
 import { BiCaretUpCircle } from "react-icons/bi";
 import { AiOutlineCalendar } from "react-icons/ai";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { calendarItems } from "../constants";
 import { TodoContext } from "../context";
 
