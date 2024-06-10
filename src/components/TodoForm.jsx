@@ -4,14 +4,12 @@ import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { AiFillBell } from "react-icons/ai";
 import React from "react";
-
 import {
   DatePicker,
   LocalizationProvider,
   MobileTimePicker,
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import "dayjs/locale/uk";
 
 export const TodoForm = ({
   handleSubmit,

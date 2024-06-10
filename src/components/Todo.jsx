@@ -64,12 +64,7 @@ export const Todo = ({ todos }) => {
   };
 
   return (
-    <div
-      className="todo"
-      style={{
-        animation: "0.3s ease 0s 1 normal forwards running fadeIn",
-      }}
-    >
+    <div className="todo">
       <div
         className="todo-container"
         onMouseEnter={() => setHover(true)}

@@ -14,6 +14,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.5",
     "firebase": "^10.11.0",
+    "framer-motion": "^11.2.10",
     "luxon": "^3.0.4",
     "moment": "^2.29.4",
     "randomcolor": "^0.6.2",

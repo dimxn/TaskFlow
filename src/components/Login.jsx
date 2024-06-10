@@ -9,6 +9,7 @@ import INTRO1 from "../assets/images/intro1.svg";
 import INTRO2 from "../assets/images/intro2.svg";
 import INTRO3 from "../assets/images/intro3.svg";
 import dayjs from "dayjs";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Item = (props) => {
   return (
@@ -88,22 +89,31 @@ const Login = () => {
   ];
 
   return (
-    <div className="login-container">
-      <Carousel
-        animation="slide"
-        navButtonsAlwaysVisible={false}
-        autoPlay={true}
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 10, opacity: 0 }}
+        transition={{ duration: 0.2 }}
       >
-        {items.map((item, i) => (
-          <Item key={i} item={item} />
-        ))}
-      </Carousel>
-      <h1>TaskFlow</h1>
-      <button className="google-auth" onClick={signInWithGoogle}>
-        <FcGoogle />
-        Авторизуватись через Google
-      </button>
-    </div>
+        <div className="login-container">
+          <Carousel
+            animation="slide"
+            navButtonsAlwaysVisible={false}
+            autoPlay={true}
+          >
+            {items.map((item, i) => (
+              <Item key={i} item={item} />
+            ))}
+          </Carousel>
+          <h1>TaskFlow</h1>
+          <button className="google-auth" onClick={signInWithGoogle}>
+            <FcGoogle />
+            Авторизуватись через Google
+          </button>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

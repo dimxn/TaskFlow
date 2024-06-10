@@ -527,6 +527,13 @@ hr {
   font-weight: bold;
   padding-bottom: 2px;
   border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-todo .header .cancel {
+  cursor: pointer;
 }
 
 .next-seven-days .day {
