@@ -3,6 +3,7 @@ import { BsPaletteFill } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { AiFillBell } from "react-icons/ai";
+import dayjs from "dayjs";
 import React from "react";
 import {
   DatePicker,
@@ -48,7 +49,11 @@ export const TodoForm = ({
             <AiOutlineCalendar />
             <p>Виберіть день</p>
           </div>
-          <DatePicker value={newDay} onChange={(day) => setNewDay(day)} />
+          <DatePicker
+            value={newDay}
+            onChange={(day) => setNewDay(day)}
+            minDate={dayjs()}
+          />
         </div>
         <div className="pick-time">
           <div className="title">
